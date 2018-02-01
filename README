@@ -1,0 +1,29 @@
+TenSQR is a viral quasispecies reconstruction algorithm that utilizes tensor factorization framework to analyze high-throughput sequencing data and reconstruct viral quasispecies characterized by highly uneven frequencies of its components. Fundamentally, TenSQR performs clustering with successive data removal to infer strains in a quasispecies in order from the most to the least abundant one, which enables reliable discovery and accurate reconstruction of rare strains existing in highly imbalanced populations even when the population diversity is low and facilitates detection of deletions in such strains.  
+
+Installation:
+-----------------
+1. Create a TenSQR directory and download the source code from repository
+2. Enter TenSQR directory run make
+
+
+Data Preparation:
+-----------------
+Check config file format (configure to your setting)
+
+* config file included in the package is configured to sample set 
+* the aligned paired-end reads file (SAM format) and corresponding reference file (FASTA format) are required for quasispecies reconstruction
+
+
+Running TenSQR:
+-----------------
+Command : ExtractMatrix <config file> 
+          python3 TenSQR <config file>
+
+Output : <zone name>_ViralSeq.txt (reconstructed viral quasispecies and their frequencies are reported in text format)
+
+
+Parameter setting:
+------------------
+The choice of parameter 'MEC improvement threshold' in config is described in Appendix B in http://biorxiv.org/content/biorxiv/early/2017/02/06/103630.full.pdf
+
+

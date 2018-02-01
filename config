@@ -1,0 +1,12 @@
+filename of reference sequence (FASTA) : sample_reference.fasta
+filname of the aligned reads (sam format) : sample_reads.sam
+SNV_thres : 0.01
+reconstruction_start : 500
+reconstruction_stop: 1200
+min_mapping_qual : 40
+min_read_length : 100
+max_insert_length : 500
+characteristic zone name : sample
+seq_err (assumed sequencing error rate(%)) : 0.2
+MEC improvement threshold : 0.0312
+initial population size : 5
