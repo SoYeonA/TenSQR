@@ -40,7 +40,6 @@ import random
 
 import math
 
-import sys
 import time
 
 from scipy.stats import binom  
@@ -49,9 +48,9 @@ from scipy.stats import binom
 
 # import config file
 
-# config_file = open('config', 'r')
+config_file = open('config', 'r')
 
-config_file = open(sys.argv[1],'r')
+#config_file = open(sys.argv[1],'r')
 config = config_file.readlines()
 
 config_file.close()
@@ -748,6 +747,7 @@ for i in range(len(index_order)):
 
            s_count = 0
 
+
        tem_end = min(int(StartSeq[tem_index[0][j]]) - 1 + len(ReadSeq[tem_index[0][j]]), window_end)
 
        if tem_end == window_end:
@@ -759,8 +759,10 @@ for i in range(len(index_order)):
            end_count = 0          
 
 
-
-       tem_read = ReadSeq[tem_index[0][j]][s_count : -1 - end_count]      
+       if end_count == 0:
+           tem_read = ReadSeq[tem_index[0][j]][s_count :]  
+       else:
+           tem_read = ReadSeq[tem_index[0][j]][s_count : -end_count]      
 
        tem[j, tem_start : tem_start + len(tem_read)] = tem_read
 
@@ -816,7 +818,7 @@ for i in range(len(viralseq_fre)):
             
             seq += '*'
     
-f.write(seq + '\n')                                    
+    f.write(seq + '\n')                                    
 
 f.close()     
 
