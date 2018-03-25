@@ -27,3 +27,10 @@ Parameter setting:
 The choice of parameter 'MEC improvement threshold' in config is described in Appendix B in http://biorxiv.org/content/biorxiv/early/2017/02/06/103630.full.pdf
 
 
+Reference:
+----------
+Soyeon Ahn, Ziki Ke and Haris Vikalo. “Viral quasispecies reconstruction via tensorfactorization with successive read removal”.
+Synthetic dataset used in the paper can be downloaded at https://storage.googleapis.com/viral_quasispecies/dataset.tar.gz
+
+
+
