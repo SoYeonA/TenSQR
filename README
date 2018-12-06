@@ -29,7 +29,7 @@ The choice of parameter 'MEC improvement threshold' in config is described in Ap
 
 Reference:
 ----------
-Soyeon Ahn, Ziki Ke and Haris Vikalo. “Viral quasispecies reconstruction via tensorfactorization with successive read removal”.
+Soyeon Ahn, Ziqi Ke and Haris Vikalo. “Viral quasispecies reconstruction via tenson factorization with successive read removal”.
 Synthetic dataset used in the paper can be downloaded at https://storage.googleapis.com/viral_quasispecies/dataset.tar.gz
 
 
