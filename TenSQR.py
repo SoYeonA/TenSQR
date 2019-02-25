@@ -373,7 +373,8 @@ index_table=np.array(index_table)
 index_order=index_table[0,np.argsort(index_table[1,:])[::-1]]
 fre_count=[]
 Recon_Quasi=np.zeros((K, Glen))
-for i in range(len(index_order)):
+#for i in range(len(index_order)):
+for i in range(K):
 	tem_index=np.where(index==index_order[i])
 	if len(tem_index[0])==0:
 		break
