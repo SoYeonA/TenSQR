@@ -353,53 +353,13 @@ Homoseq = Homoseq.astype(int)
 Glen = len(Homoseq)
 K = m
 
-# Full Genome
-ReadSeqname=zone_name+'_ReadSeq.txt'
-StartSeqname=zone_name+'_StartSeq.txt'
-with open(ReadSeqname) as f:
-	ReadSeq=f.readlines()
-ReadSeq=[x.strip().split(' ') for x in ReadSeq]
-ReadSeq=[list(map(int, x)) for x in ReadSeq]
-
-with open(StartSeqname) as f:
-	StartSeq=f.read()
-StartSeq=StartSeq.split(' ')
-
-dic=collections.Counter(index)
-index_table=[]
-index_table.append(list(dic.keys()))
-index_table.append(list(dic.values()))
-index_table=np.array(index_table)
-index_order=index_table[0,np.argsort(index_table[1,:])[::-1]]
-fre_count=[]
-Recon_Quasi=np.zeros((K, Glen))
-#for i in range(len(index_order)):
-for i in range(K):
-	tem_index=np.where(index==index_order[i])
-	if len(tem_index[0])==0:
-		break
-	fre_count.append(len(tem_index[0]))
-	tem=np.zeros((len(tem_index[0]),Glen))
-	for j in range(len(tem_index[0])):
-		tem_start=max(0,int(StartSeq[tem_index[0][j]])-window_start)
-		if tem_start == 0:
-			s_count=abs(int(StartSeq[tem_index[0][j]])-window_start)
-		else:
-			s_count=0
-		tem_end=min(int(StartSeq[tem_index[0][j]])-1+len(ReadSeq[tem_index[0][j]]),window_end)
-		if tem_end==window_end:
-			end_count=abs(int(StartSeq[tem_index[0][j]])-1+len(ReadSeq[tem_index[0][j]])-window_end)
-		else:
-			end_count=0       
-	
-		if end_count==0:
-			tem_read=ReadSeq[tem_index[0][j]][s_count:]
-		else:
-			tem_read=ReadSeq[tem_index[0][j]][s_count:-end_count] 
-		tem[j,tem_start:tem_start+len(tem_read)]=tem_read
-	Recon_Quasi[i,:]=np.argmax(ACGT_count(tem),axis=1)+1
-	Recon_Quasi[i,np.where(ACGT_count(tem).sum(axis=1)==0)]=0
-Recon_Quasi = Recon_Quasi.astype('int')
+# full sequence
+Recon_Quasi = []
+for _ in range(K):
+	Recon_Quasi.append(list(Homoseq))
+Recon_Quasi = np.array(Recon_Quasi)
+for i in range(Recon_Quasi.shape[0]):
+    Recon_Quasi[i, SNVpos] = V_deletion_new[i, :]
 
 # output
 Quasi=[]
@@ -420,7 +380,7 @@ for i in range(len(Recon_Quasi)):
 			seq+='*'
 	Quasi.append(seq)
 
-viralseq_fre=np.array(fre_count)/sum(fre_count)       
+viralseq_fre=viralseq_fre_new       
 Hashtable=dict()
 for i in range(len(Quasi)):
 	if Quasi[i] not in Hashtable:
